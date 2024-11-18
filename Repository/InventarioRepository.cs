@@ -39,5 +39,27 @@ namespace Biblioteca.Repository{
             }
         }
 
+        public void excluirPorID(int id)
+        {
+            using(var connection = db.GetConnection())
+            {
+                connection.Open();
+                var cmd = new MySqlCommand("DELETE FROM Inventario WHERE ID = @ID", connection);
+                cmd.Parameters.AddWithValue("@ID" , id);
+                
+
+                var linhasafetadas = cmd.ExecuteNonQuery();
+
+                if (linhasafetadas > 0)
+                {
+                    Console.WriteLine("Item de inventario excluido com sucesso!");
+                }
+                else
+                {
+                    Console.WriteLine("Nenhum registro encontrado com esse id!")
+                }
+            }
+        }
+
     }
 }
