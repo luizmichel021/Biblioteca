@@ -13,9 +13,7 @@ namespace Biblioteca.Repository{
 
         private readonly Database db; 
 
-        public InventarioRepository(){
-            db = new Database();
-        }
+
 
         public void adicionar(Inventario inventario){
 

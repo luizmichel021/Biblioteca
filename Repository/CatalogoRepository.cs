@@ -8,11 +8,6 @@ namespace Biblioteca.Repository
         private readonly Database db;
 
 
-        public CatalogoRepository()
-        {
-            db = new Database();
-        }
-
 
         public void adicionar(Catalogo catalogo)
         {
