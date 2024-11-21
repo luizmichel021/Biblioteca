@@ -1,0 +1,37 @@
+# Ignorar pastas de compilação
+bin/
+obj/
+
+# Ignorar arquivos temporários do Visual Studio
+*.user
+*.suo
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar pastas e arquivos do Visual Studio Code
+.vscode/
+
+# Ignorar arquivos gerados pelo sistema
+*.tmp
+*.cache
+
+# Ignorar pacotes gerados (se aplicável)
+*.nupkg
+packages/
+
+# Ignorar arquivos de depuração
+*.pdb
+
+# Ignorar arquivos de configuração específicos do ambiente
+*.env
+
+# Ignorar arquivos criados automaticamente pelo build
+*.dll
+*.exe
+*.json
+
+# Exceções - manter esses arquivos no repositório
+!Biblioteca.csproj
+!Biblioteca.sln
+!Program.cs
