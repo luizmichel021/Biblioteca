@@ -107,54 +107,21 @@ namespace Biblioteca.Repository
         //     }
         //     return catalogoList;
         // }
-        
-    
-        
 
-        public void atualizar(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null)
+        public void atualizar(string sql)
         {
             using (var connection = db.GetConnection())
             {
-                connection.Open();
-                var sql = "UPDATE Catalogo SET ";
-                var parameters = new List<MySqlParameter>();
+                connection.Open();            
+                
 
-                if (titulo != null)
-                {
-                    sql += "Titulo = @Titulo, ";
-                    parameters.Add(new MySqlParameter("@Titulo", titulo));
-                }
-
-                if (autor != null)
-                {
-                    sql += "Autor = @Autor, ";
-                    parameters.Add(new MySqlParameter("@Autor", autor));
-                }
-
-                if (genero != null)
-                {
-                    sql += "Genero = @Genero, ";
-                    parameters.Add(new MySqlParameter("@Genero", genero));
-                }
-
-                if (ano.HasValue)
-                {
-                    sql += "Ano = @Ano, ";
-                    parameters.Add(new MySqlParameter("@Ano", ano.Value));
-                }
-
-                // tira virgula e espaço
-                sql = sql.TrimEnd(',', ' ');
-
-                // Adiciona o WHERE
-                sql += " WHERE ID = @ID";
-                parameters.Add(new MySqlParameter("@ID", id));
-
-                var cmd = new MySqlCommand(sql, connection);
-                cmd.Parameters.AddRange(parameters.ToArray());
+                var cmd = new MySqlCommand($"{sql}", connection);
+                
 
                 cmd.ExecuteNonQuery();
             }
         }
+        
+    
     }
 }

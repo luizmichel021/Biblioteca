@@ -42,7 +42,7 @@ namespace Biblioteca
 
         var service = new Service();
 
-        service.listarCatalogo();
+        service.atualizarCatalogo(1,"duro de matar", "jhonny", "drama", 1999);
         }
     }
 }

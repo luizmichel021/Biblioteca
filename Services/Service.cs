@@ -54,6 +54,46 @@ namespace Biblioteca.Services{
             return listaCatalogo;
         }
 
+
+        public void atualizarCatalogo(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null)
+        {
+                string sql = $"UPDATE Catalogo SET ";
+
+
+                if (titulo != null)
+                {
+                    sql += $"Titulo = '{titulo}', ";
+                    
+                }
+
+                if (autor != null)
+                {
+                    sql += $"Autor = '{autor}', ";
+                    
+                }
+
+                if (genero != null)
+                {
+                    sql += $"Genero = '{genero}', ";
+                    
+                }
+
+                if (ano.HasValue)
+                {
+                    sql += $"Ano = '{ano}', ";
+                }
+
+                // tira virgula e espaço
+                sql = sql.TrimEnd(',', ' ');
+
+                // Adiciona o WHERE
+                sql += $" WHERE ID = {id}";
+                
+                catalogoRepository.atualizar(sql);
+                // catalogoRepository.atualizar(sql);
+            
+        }
+
         
 
     }
