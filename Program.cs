@@ -18,11 +18,14 @@ namespace Biblioteca
         // var invent = new Inventario(1);
         // var invent2 = new Inventario(2);
 
-        var catalogo = new Catalogo("Cachorro", "DAN BROWN", 2000, "Drama" ,500);
-        
         
 
-        catalogoRepository.adicionar(catalogo);
+        // var catalogo = new Catalogo("Gato", "DAN BROWN", 2000, "Drama" ,500);
+        
+        // var catalogo = catalogoRepository.excluirPorID(5);
+        // Console.WriteLine(catalogo);
+    
+        // catalogoRepository.adicionar(catalogo);
       
         // inventarioRepository.adicionar(invent);
         // inventarioRepository.adicionar(invent2);
@@ -37,10 +40,9 @@ namespace Biblioteca
 
         // Console.WriteLine(inventarioRepository.idDosExemplares(2));
 
-        // var service = new Service();
+        var service = new Service();
 
-        // service.exibeLivroandQuantidade(1);
-        
+        service.listarCatalogo();
         }
     }
 }

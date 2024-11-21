@@ -58,5 +58,12 @@ namespace Biblioteca.Models
             Genero = genero;
             Pags = pags;
         }
+
+          public override string ToString()
+        {
+            return $"ID: {ID} Título: {Titulo}, Autor: {Autor}, Ano: {Ano}, Gênero: {Genero}, Páginas: {Pags}";
+        
+        }
     }
-}
+
+}        

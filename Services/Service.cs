@@ -1,6 +1,8 @@
 using Biblioteca.Repository;
 using Biblioteca.Models;
 using Microsoft.VisualBasic;
+using Org.BouncyCastle.Asn1.Misc;
+using Org.BouncyCastle.Asn1.Ocsp;
 
 namespace Biblioteca.Services{
 
@@ -16,13 +18,43 @@ namespace Biblioteca.Services{
         inventarioRepository = new InventarioRepository();
         }
    
-        public void exibeLivroandQuantidade(int id){
-            var livro = catalogoRepository.obterPorID(id);
-            var quantidade = inventarioRepository.quantidadeExemplares(id);
-            Console.WriteLine(livro);
-            Console.WriteLine(quantidade);
+        public List<Catalogo> listarCatalogo() 
+        {
+            
+            var i= 1;
+            var listaCatalogo = new List<Catalogo>();
+            
 
+            while(true)
+            {
+                var response = catalogoRepository.obterPorID(i);
+                
+                if (response != null)
+                {
+                    listaCatalogo.Add(response);
+                    i++;
+                }
+                else
+                {
+                   break;
+                }
+            
+            }
+
+            foreach (var item in listaCatalogo)
+            {
+                    Console.WriteLine("ID: " + item.ID);
+                    Console.WriteLine("Titulo: " + item.Titulo);
+                    Console.WriteLine("Autor: " + item.Autor);
+                    Console.WriteLine("Ano: " + item.Ano);
+                    Console.WriteLine("Genero: " + item.Genero);
+                    Console.WriteLine("Pags: " + item.Pags);
+                    Console.WriteLine(new string('-', 20)); // Separador entre os itens
+            }
+            return listaCatalogo;
         }
+
+        
 
     }
     
