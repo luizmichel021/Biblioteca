@@ -1,8 +1,8 @@
 using MySql.Data.MySqlClient;
 
-namespace Biblioteca.Repository
+namespace Biblioteca.Database
 {
-    public class Database
+    public class Connection
     {
         private string connectionString = "Server=localhost;Database=Biblioteca;Uid=root;Pwd=123456;";
 

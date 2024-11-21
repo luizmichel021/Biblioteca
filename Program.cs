@@ -18,7 +18,7 @@ namespace Biblioteca
         // var invent = new Inventario(1);
         // var invent2 = new Inventario(2);
 
-        var catalogo = new Catalogo("VERDE E AMARELO", "DAN BROWN", 2000, "Drama" ,500);
+        var catalogo = new Catalogo("Cachorro", "DAN BROWN", 2000, "Drama" ,500);
         
         
 

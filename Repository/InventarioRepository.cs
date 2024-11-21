@@ -6,23 +6,23 @@ using Mysqlx.Expr;
 using Org.BouncyCastle.Tls;
 using Microsoft.VisualBasic;
 using System.Runtime.CompilerServices;
+using Biblioteca.Database;
 
 namespace Biblioteca.Repository{
 
     public class InventarioRepository{
 
-        private readonly Database db; 
+        private readonly Connection db = new Connection(); 
 
 
-
-        public void adicionar(Inventario inventario){
+        public object adicionar(Inventario inventario){
 
             using(var connection = db.GetConnection()){
                 connection.Open();
                 var cmd = new MySqlCommand("INSERT INTO Inventario (ID_Catalogo) VALUES (@ID_Catalogo)", connection);
                 cmd.Parameters.AddWithValue("@ID_Catalogo" , inventario.ID_Catalogo);
-                cmd.ExecuteNonQuery();
-                
+                var resultado = cmd.ExecuteNonQuery();
+                return resultado;                
             }
         }
 

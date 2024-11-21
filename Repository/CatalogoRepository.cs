@@ -1,12 +1,13 @@
 using MySql.Data.MySqlClient;
 using Biblioteca.Models;
+using Biblioteca.Database;
 
 namespace Biblioteca.Repository
 {
     public class CatalogoRepository
     {
-        private readonly Database db;
-
+        private readonly Connection db = new Connection();   
+        
 
 
         public void adicionar(Catalogo catalogo)
