@@ -16,7 +16,7 @@ obj/
 *.tmp
 *.cache
 
-# Ignorar pacotes gerados (se aplicável)
+# Ignorar pacotes gerados 
 *.nupkg
 packages/
 
