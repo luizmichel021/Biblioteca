@@ -18,22 +18,24 @@ namespace Biblioteca.Services{
         inventarioRepository = new InventarioRepository();
         }
 
-        public string adicionarLivro(Livro livro)
+        public string adicionarLivro(string titulo, string autor, int ano, string genero, int pags)
         {
-            string sql = $"INSERT INTO Livro (Titulo, Autor, Ano, Genero, Pags) VALUES ('{livro.Titulo}', '{livro.Autor}', {livro.Ano}, '{livro.Genero}', {livro.Pags})";
-            var linhasafetadas = livroRepository.adicionar(sql);
-
-            if (linhasafetadas != 0){
-                return "Livro Adicionado com sucesso!";
+            var livro = new Livro(titulo,autor,ano,genero,pags);
+            var rows = livroRepository.adicionar(livro);
+            if (rows != 0)
+            {
+                return "Livro adicionado com sucesso!";
             }
-            else{
-                return "Livro não pode ser adicionado, cheque o objeto livro e tente novamente";
-            } 
+            else
+            {
+                return "error, livro não pode ser adicionado!";
+            }
+            
         }
         public string excluirLivro(int id)
         {
-            string sql = $"DELETE FROM Livro WHERE ID = '{id}'";
-            var linhasafetadas = livroRepository.excluir(sql);
+            
+            var linhasafetadas = livroRepository.excluir(id);
 
             if (linhasafetadas != 0)
             {
@@ -44,54 +46,25 @@ namespace Biblioteca.Services{
                 return $"O livro do ID : {id} não existe!";
             }
         }
-       
         public Livro buscaLivroPorID(int id){
-            string sql = $"SELECT * FROM Livro WHERE ID = '{id}'";
-            var livro = livroRepository.buscaLivro(sql);
+
+            var livro = new Livro();
+            livro = livroRepository.buscaLivro(id);
             return livro;
         }
-        public void atualizarLivro(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null)
+        public void atualizarLivro(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null, int? pags = null)
         {
-                string sql = $"UPDATE Livro SET ";
-
-
-                if (titulo != null)
-                {
-                    sql += $"Titulo = '{titulo}', ";
-                    
-                }
-
-                if (autor != null)
-                {
-                    sql += $"Autor = '{autor}', ";
-                    
-                }
-
-                if (genero != null)
-                {
-                    sql += $"Genero = '{genero}', ";
-                    
-                }
-
-                if (ano.HasValue)
-                {
-                    sql += $"Ano = '{ano}', ";
-                }
-
-                // tira virgula e espaço
-                sql = sql.TrimEnd(',', ' ');
-
-                // Adiciona o WHERE
-                sql += $" WHERE ID = {id}";
+            // depois mexer nesse metodo pra retornar o antes e depois dos campos e quais campos foram atualizados!
+            livroRepository.atualizar(id, titulo, autor, genero, ano, pags);
                 
-                livroRepository.atualizar(sql);
         }
-
+        
+        
         public List<Livro> ExibirCatalogo() 
         {
             var catalogo = new List<Livro>();
             
-            var ids = livroRepository.BuscaIds();
+            var ids = livroRepository.buscaIds();
             foreach(var id in ids)
             {
                 var response = buscaLivroPorID(id);
@@ -107,16 +80,16 @@ namespace Biblioteca.Services{
             
             }
 
-            // foreach (var item in catalogo)
-            // {
-            //         Console.WriteLine("ID: " + item.ID);
-            //         Console.WriteLine("Titulo: " + item.Titulo);
-            //         Console.WriteLine("Autor: " + item.Autor);
-            //         Console.WriteLine("Ano: " + item.Ano);
-            //         Console.WriteLine("Genero: " + item.Genero);
-            //         Console.WriteLine("Pags: " + item.Pags);
-            //         Console.WriteLine(new string('-', 20)); // Separador entre os itens
-            // }
+            foreach (var item in catalogo)
+            {
+                    Console.WriteLine("ID: " + item.ID);
+                    Console.WriteLine("Titulo: " + item.Titulo);
+                    Console.WriteLine("Autor: " + item.Autor);
+                    Console.WriteLine("Ano: " + item.Ano);
+                    Console.WriteLine("Genero: " + item.Genero);
+                    Console.WriteLine("Pags: " + item.Pags);
+                    Console.WriteLine(new string('-', 20)); // Separador entre os itens
+            }
             return catalogo;
         }
     }

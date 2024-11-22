@@ -1,11 +1,5 @@
 using MySql.Data.MySqlClient;
 using Biblioteca.Models;
-using Biblioteca.Repository;
-using Org.BouncyCastle.Asn1.Misc;
-using Mysqlx.Expr;
-using Org.BouncyCastle.Tls;
-using Microsoft.VisualBasic;
-using System.Runtime.CompilerServices;
 using Biblioteca.Database;
 
 namespace Biblioteca.Repository{

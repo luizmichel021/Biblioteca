@@ -1,6 +1,7 @@
 ﻿using Biblioteca.Repository;
 using Biblioteca.Models;
 using Biblioteca.Services;
+using ZstdSharp.Unsafe;
 
 
 namespace Biblioteca
@@ -13,11 +14,12 @@ namespace Biblioteca
             
             var service = new Service();
 
-            // var livro = new Livro ("Shek 2", "Disney", 207 , "Comedia" , 120);
+            // Console.WriteLine(service.adicionarLivro("Shrek 3", "Disney", 2007,"Comedia" , 120));
 
             // Console.WriteLine(service.adicionarLivro(livro));
-            Console.WriteLine(service.excluirLivro(6));
+            // Console.WriteLine(service.excluirLivro(9));
             // Console.WriteLine(service.buscaLivroPorID(2));
+            // service.atualizarLivro(8, "SHREK 2", "DISNEY", "COMEDIA", 2007, 500 );
 
             
 
