@@ -2,7 +2,7 @@ using System.Dynamic;
 
 namespace Biblioteca.Models
 {
-    public class Catalogo
+    public class Livro
     {
         // ATRIBUTOS
         private int id;
@@ -49,8 +49,8 @@ namespace Biblioteca.Models
             set {pags = value;}
         } 
 
-        public Catalogo() { }
-        public Catalogo(string titulo, string autor,  int ano, string genero, int pags )
+        public Livro() { }
+        public Livro(string titulo, string autor,  int ano, string genero, int pags )
         {
             Titulo = titulo;
             Autor = autor;

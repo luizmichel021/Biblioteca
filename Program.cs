@@ -11,38 +11,22 @@ namespace Biblioteca
         static void Main(string[] args)
         {
             
-        var catalogoRepository = new CatalogoRepository();
+            var service = new Service();
 
-        // var inventarioRepository = new InventarioRepository();
+            // var livro = new Livro ("Shek 2", "Disney", 207 , "Comedia" , 120);
 
-        // var invent = new Inventario(1);
-        // var invent2 = new Inventario(2);
+            // Console.WriteLine(service.adicionarLivro(livro));
+            Console.WriteLine(service.excluirLivro(6));
+            // Console.WriteLine(service.buscaLivroPorID(2));
+
+            
+
+            service.ExibirCatalogo();
+
+            
 
         
 
-        // var catalogo = new Catalogo("Gato", "DAN BROWN", 2000, "Drama" ,500);
-        
-        // var catalogo = catalogoRepository.excluirPorID(5);
-        // Console.WriteLine(catalogo);
-    
-        // catalogoRepository.adicionar(catalogo);
-      
-        // inventarioRepository.adicionar(invent);
-        // inventarioRepository.adicionar(invent2);
-
-        // catalogoRepository.listar();
-
-        // inventarioRepository.excluirPorID(1);
-
-        // catalogoRepository.listar();
-
-        // inventarioRepository.editarId_Catalogo(2,2);
-
-        // Console.WriteLine(inventarioRepository.idDosExemplares(2));
-
-        var service = new Service();
-
-        service.atualizarCatalogo(1,"duro de matar", "jhonny", "drama", 1999);
         }
     }
 }
