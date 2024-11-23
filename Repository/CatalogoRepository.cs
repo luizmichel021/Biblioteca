@@ -7,35 +7,35 @@ using Biblioteca.Utils;
 
 namespace Biblioteca.Repository
 {
-    public class LivroRepository
+    public class CatalogoRepository
     {
         private readonly Connection db = new Connection();   
 
             // A Função adicionar retornara um inteiro, o conteudo desse inteiro é a quantidade de linhas afetadas.
-        public int adicionar(Livro livro) 
+        public int adicionar(Catalogo catalogo) 
         {
             
             using (var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand ("INSERT INTO Livro (Titulo, Autor, Ano, Genero, Pags) VALUES (@Titulo, @Autor, @Ano, @Genero, @Pags)",connection);;
-                cmd.Parameters.AddWithValue("@Titulo", livro.Titulo);
-                cmd.Parameters.AddWithValue("@Autor", livro.Autor);
-                cmd.Parameters.AddWithValue("@Ano", livro.Ano);
-                cmd.Parameters.AddWithValue("@Genero", livro.Genero);
-                cmd.Parameters.AddWithValue("Pags", livro.Pags);
+                var cmd = new MySqlCommand ("INSERT INTO Catalogo (Titulo, Autor, Ano, Genero, Pags) VALUES (@Titulo, @Autor, @Ano, @Genero, @Pags)",connection);;
+                cmd.Parameters.AddWithValue("@Titulo", catalogo.Titulo);
+                cmd.Parameters.AddWithValue("@Autor", catalogo.Autor);
+                cmd.Parameters.AddWithValue("@Ano", catalogo.Ano);
+                cmd.Parameters.AddWithValue("@Genero", catalogo.Genero);
+                cmd.Parameters.AddWithValue("Pags", catalogo.Pags);
                 var rows = cmd.ExecuteNonQuery();
                 return rows;
                 
             }
         }
 
-        public Livro buscaLivro(int id)
+        public Catalogo buscaCatalogo(int id)
         {
             using (var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("SELECT * FROM Livro WHERE ID = @ID", connection);
+                var cmd = new MySqlCommand("SELECT * FROM Catalogo WHERE ID = @ID", connection);
                 cmd.Parameters.AddWithValue("@ID", id);
                 var reader = cmd.ExecuteReader();
 
@@ -57,7 +57,7 @@ namespace Biblioteca.Repository
             using (var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("DELETE FROM Livro WHERE ID = @ID", connection);
+                var cmd = new MySqlCommand("DELETE FROM Catalogo WHERE ID = @ID", connection);
                 cmd.Parameters.AddWithValue("ID", id);
                 var rows = cmd.ExecuteNonQuery();
                 return rows;
@@ -71,7 +71,7 @@ namespace Biblioteca.Repository
             {
                 connection.Open();            
                 
-                var sql = "UPDATE Livro SET ";
+                var sql = "UPDATE Catalogo SET ";
                 var parameters = new List<MySqlParameter>();
 
                 if (titulo != null)

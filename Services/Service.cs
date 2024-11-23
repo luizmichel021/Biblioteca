@@ -8,20 +8,20 @@ namespace Biblioteca.Services{
 
     public class Service
     {
-        private LivroRepository livroRepository;
+        private CatalogoRepository catalogoRepository;
 
         private InventarioRepository inventarioRepository;
         
         public Service()
         {
-        livroRepository = new LivroRepository();
+        catalogoRepository = new CatalogoRepository();
         inventarioRepository = new InventarioRepository();
         }
 
-        public string adicionarLivro(string titulo, string autor, int ano, string genero, int pags)
+        public string adicionarCatalogo(string titulo, string autor, int ano, string genero, int pags)
         {
-            var livro = new Livro(titulo,autor,ano,genero,pags);
-            var rows = livroRepository.adicionar(livro);
+            var catalogo = new Catalogo(titulo,autor,ano,genero,pags);
+            var rows = catalogoRepository.adicionar(catalogo);
             if (rows != 0)
             {
                 return "Livro adicionado com sucesso!";
@@ -32,10 +32,10 @@ namespace Biblioteca.Services{
             }
             
         }
-        public string excluirLivro(int id)
+        public string excluirCatalogo(int id)
         {
             
-            var linhasafetadas = livroRepository.excluir(id);
+            var linhasafetadas = catalogoRepository.excluir(id);
 
             if (linhasafetadas != 0)
             {
@@ -46,28 +46,26 @@ namespace Biblioteca.Services{
                 return $"O livro do ID : {id} não existe!";
             }
         }
-        public Livro buscaLivroPorID(int id){
+        public Catalogo buscaCatalogoPorID(int id){
 
-            var livro = new Livro();
-            livro = livroRepository.buscaLivro(id);
-            return livro;
+            var catalogo = new Catalogo();
+            catalogo = catalogoRepository.buscaCatalogo(id);
+            return catalogo;
         }
-        public void atualizarLivro(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null, int? pags = null)
+        public void atualizarCatalogo(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null, int? pags = null)
         {
             // depois mexer nesse metodo pra retornar o antes e depois dos campos e quais campos foram atualizados!
-            livroRepository.atualizar(id, titulo, autor, genero, ano, pags);
+            catalogoRepository.atualizar(id, titulo, autor, genero, ano, pags);
                 
         }
-        
-        
-        public List<Livro> ExibirCatalogo() 
+        public List<Catalogo> ExibirCatalogo() 
         {
-            var catalogo = new List<Livro>();
+            var catalogo = new List<Catalogo>();
             
-            var ids = livroRepository.buscaIds();
+            var ids = catalogoRepository.buscaIds();
             foreach(var id in ids)
             {
-                var response = buscaLivroPorID(id);
+                var response = buscaCatalogoPorID(id);
                 
                 if (response != null)
                 {

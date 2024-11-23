@@ -6,8 +6,8 @@ namespace Biblioteca.Utils{
 
     public class Mapper{
 
-        public Livro mapear(MySqlDataReader reader){
-            return new Livro
+        public Catalogo mapear(MySqlDataReader reader){
+            return new Catalogo
             {
                 ID = reader.GetInt32("ID"),
                 Titulo = reader.GetString("Titulo"),
