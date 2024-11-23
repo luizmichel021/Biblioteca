@@ -1,9 +1,8 @@
 using MySql.Data.MySqlClient;
 using Biblioteca.Models;
 using Biblioteca.Database;
-using Biblioteca.Utils;
 using Microsoft.VisualBasic;
-using Biblioteca.Utils;
+
 
 namespace Biblioteca.Repository
 {
@@ -41,8 +40,15 @@ namespace Biblioteca.Repository
 
                 if (reader.Read())
                 {
-                    var mapper = new Mapper();
-                    return mapper.mapear(reader);
+                     return new Catalogo
+                        {
+                            ID = reader.GetInt32("ID"),
+                            Titulo = reader.GetString("Titulo"),
+                            Autor = reader.GetString("Autor"),
+                            Ano = reader.GetInt32("Ano"),
+                            Genero = reader.GetString("Genero"),
+                            Pags = reader.GetInt32("Pags")
+                        };
                 }
                 else
                 {
