@@ -28,8 +28,13 @@ namespace Biblioteca.Models
 
         public Inventario(){}
         public Inventario(int id_catalogo)
+        {           
+            ID_Catalogo = id_catalogo;           
+        }
+
+        public override string ToString()
         {
-            ID_Catalogo = id_catalogo;
+            return "ID:" + id + "  Catalogo:" + id_catalogo + "   Disponivel:" + disponivel;
         }
     }
-}
+}    

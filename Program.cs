@@ -13,17 +13,21 @@ namespace Biblioteca
         {
             
             var service = new Service();
+ 
+            var usuario = new UsuarioRepository();
 
-            // Console.WriteLine(service.adicionarLivro("Shrek 3", "Disney", 2007,"Comedia" , 120));
+            var  usu = new Usuario("Michel", "Vila Glauco 126", "michelwork18@hotmail.com", 975598507 , new DateTime(2000, 8 ,23));
 
-            // Console.WriteLine(service.adicionarLivro(livro));
+            // Catalogo livro = new Catalogo("Shrek 3", "Disney", 2007,"Comedia" , 120);
+
+            // Console.WriteLine(service.adicionarCatalogo("Shrek 3", "Disney", 2007,"Comedia" , 120));
             // Console.WriteLine(service.excluirLivro(9));
             // Console.WriteLine(service.buscaLivroPorID(2));
             // service.atualizarLivro(8, "SHREK 2", "DISNEY", "COMEDIA", 2007, 500 );
 
-            
+            Console.WriteLine(usuario.create(usu));
 
-            service.ExibirCatalogo();
+            // Console.WriteLine(usu);
 
             
 

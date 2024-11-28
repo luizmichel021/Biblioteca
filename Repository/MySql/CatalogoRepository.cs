@@ -6,12 +6,12 @@ using Microsoft.VisualBasic;
 
 namespace Biblioteca.Repository
 {
-    public class CatalogoRepository
+    public class CatalogoRepository : ICatalogoRepository
     {
         private readonly Connection db = new Connection();   
 
-            // A Função adicionar retornara um inteiro, o conteudo desse inteiro é a quantidade de linhas afetadas.
-        public int adicionar(Catalogo catalogo) 
+            // A Função set retornara um inteiro, o conteudo desse inteiro é a quantidade de linhas afetadas.
+        public int create(Catalogo catalogo) 
         {
             
             using (var connection = db.GetConnection())
@@ -28,8 +28,8 @@ namespace Biblioteca.Repository
                 
             }
         }
-
-        public Catalogo buscaCatalogo(int id)
+        
+        public Catalogo getCatalogo(int id)
         {
             using (var connection = db.GetConnection())
             {
@@ -57,8 +57,8 @@ namespace Biblioteca.Repository
                                 
             }
         }
-
-        public int excluir(int id)
+        
+        public int delete(int id)
         {
             using (var connection = db.GetConnection())
             {
@@ -70,8 +70,8 @@ namespace Biblioteca.Repository
 
             }
         }
-
-        public void atualizar(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null, int? pags = null)
+        
+        public void update(int id, string? titulo = null, string? autor = null, string? genero = null, int? ano = null, int? pags = null)
         {
             using (var connection = db.GetConnection())
             {
@@ -125,7 +125,8 @@ namespace Biblioteca.Repository
 
             }
         }
-        public List<int> buscaIds()
+        
+        public List<int> getAllIdsCatalogo()
         {
             var ids = new List<int>();
 
