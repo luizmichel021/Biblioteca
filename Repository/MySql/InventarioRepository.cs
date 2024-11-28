@@ -15,8 +15,8 @@ namespace Biblioteca.Repository
         {
               using(var connection = db.GetConnection()){
                 connection.Open();
-                var cmd = new MySqlCommand("INSERT INTO Inventario (ID_Catalogo) VALUES (@ID_Catalogo)", connection);
-                cmd.Parameters.AddWithValue("@ID_Catalogo" , inventario.ID_Catalogo);
+                var cmd = new MySqlCommand("INSERT INTO Inventario (IDLivro_Catalogo) VALUES (@IDLivro_Catalogo)", connection);
+                cmd.Parameters.AddWithValue("@IDLivro_Catalogo" , inventario.IDLivro_Catalogo);
                 var resultado = cmd.ExecuteNonQuery();
                 if(resultado != 0)
                 {
@@ -43,14 +43,13 @@ namespace Biblioteca.Repository
                     return new Inventario
                     {
                         ID = reader.GetInt32("ID"),
-                        ID_Catalogo = reader.GetInt32("ID_Catalogo"),
+                        IDLivro_Catalogo = reader.GetInt32("IDLivro_Catalogo"),
                         Disponivel = reader.GetBoolean("Disponivel")
                     };
                 }
                 else
                 {
-                    Inventario vent = new Inventario();
-                    return vent;
+                    return null;
                 }  
             }
         }
@@ -60,8 +59,8 @@ namespace Biblioteca.Repository
             using(var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("SELECT COUNT(*) FROM Inventario WHERE ID_Catalogo = @ID_Catalogo", connection);
-                cmd.Parameters.AddWithValue("ID_Catalogo", ID_Catalogo);
+                var cmd = new MySqlCommand("SELECT COUNT(*) FROM Inventario WHERE IDLivro_Catalogo = @IDLivro_Catalogo", connection);
+                cmd.Parameters.AddWithValue("IDLivro_Catalogo", ID_Catalogo);
                 var resultado = cmd.ExecuteScalar();
                 return Convert.ToInt32(resultado);
             }
@@ -94,9 +93,9 @@ namespace Biblioteca.Repository
             using(var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("UPDATE Inventario SET ID_Catalogo = @ID_Catalogo WHERE ID = @ID", connection);
+                var cmd = new MySqlCommand("UPDATE Inventario SET IDLivro_Catalogo = @IDLivro_Catalogo WHERE ID = @ID", connection);
                 
-                cmd.Parameters.AddWithValue("@ID_Catalogo", Id_Catalogo);
+                cmd.Parameters.AddWithValue("@IDLivro_Catalogo", Id_Catalogo);
                 cmd.Parameters.AddWithValue("@ID", id);
 
                 var linhasAfetadas = cmd.ExecuteNonQuery();

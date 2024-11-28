@@ -42,7 +42,7 @@ namespace Biblioteca.Repository
                 {
                      return new Catalogo
                         {
-                            ID = reader.GetInt32("ID"),
+                            IDLivro = reader.GetInt32("ID"),
                             Titulo = reader.GetString("Titulo"),
                             Autor = reader.GetString("Autor"),
                             Ano = reader.GetInt32("Ano"),
@@ -114,8 +114,8 @@ namespace Biblioteca.Repository
                 sql = sql.TrimEnd(',', ' ');
 
                 // Adiciona a cláusula WHERE
-                sql += " WHERE ID = @ID";
-                parameters.Add(new MySqlParameter("@ID", id));
+                sql += " WHERE IDLivro = @IDLivro";
+                parameters.Add(new MySqlParameter("@IDLivro", id));
 
                 var cmd = new MySqlCommand(sql, connection);
                 cmd.Parameters.AddRange(parameters.ToArray());

@@ -4,7 +4,7 @@ namespace Biblioteca.Models
     {
         // ATRIBUTOS
         private int id;
-        private int id_catalogo;
+        private int idlivro_catalogo;
         private bool disponivel;
 
         // PROPRIEDADES
@@ -14,10 +14,10 @@ namespace Biblioteca.Models
             set {id = value;}
         }
 
-        public int ID_Catalogo
+        public int IDLivro_Catalogo
         {
-            get {return id_catalogo;}
-            set {id_catalogo = value;}
+            get {return idlivro_catalogo;}
+            set {idlivro_catalogo = value;}
         }
 
         public bool Disponivel
@@ -29,12 +29,12 @@ namespace Biblioteca.Models
         public Inventario(){}
         public Inventario(int id_catalogo)
         {           
-            ID_Catalogo = id_catalogo;           
+            IDLivro_Catalogo = id_catalogo;           
         }
 
         public override string ToString()
         {
-            return "ID:" + id + "  Catalogo:" + id_catalogo + "   Disponivel:" + disponivel;
+            return "ID:" + id + "  Catalogo:" + idlivro_catalogo + "   Disponivel:" + disponivel;
         }
     }
 }    
