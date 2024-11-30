@@ -5,7 +5,7 @@ namespace Biblioteca.Repository{
     public interface IInventarioRepository
     {
         // Metodos
-        bool setInventario(Inventario inventario);
+        bool create(Inventario inventario);
 
         Inventario getInventario(int id);
 

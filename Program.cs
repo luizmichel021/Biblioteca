@@ -15,18 +15,27 @@ namespace Biblioteca
             var service = new Service();
  
             var usuario = new UsuarioRepository();
+            var catalogo = new CatalogoRepository();
+            var inventario = new InventarioRepository();
+            var emprestimo = new EmprestimoRespository();
 
-            var  usu = new Usuario("Michel", "Vila Glauco 126", "michelwork18@hotmail.com", 975598507 , new DateTime(2000, 8 ,23));
+            Usuario usu = new Usuario("Michel", "Vila Glauco 126", "michelwork18@hotmail.com", 975598507 , new DateTime(2000, 8 ,23));
+            
 
-            // Catalogo livro = new Catalogo("Shrek 3", "Disney", 2007,"Comedia" , 120);
+            Catalogo livro = new Catalogo("Peter Pan", "Disney", 2007,"Comedia" , 120);
+
+            Inventario invent = new Inventario(1);
+
 
             // Console.WriteLine(service.adicionarCatalogo("Shrek 3", "Disney", 2007,"Comedia" , 120));
             // Console.WriteLine(service.excluirLivro(9));
             // Console.WriteLine(service.buscaLivroPorID(2));
             // service.atualizarLivro(8, "SHREK 2", "DISNEY", "COMEDIA", 2007, 500 );
-
-            Console.WriteLine(usuario.create(usu));
-
+            // Console.WriteLine(catalogo.create(livro));
+            // Console.WriteLine(usuario.create(usu));
+            // Console.WriteLine(inventario.create(invent));
+            // Console.WriteLine(emprestimo.createEmprestimo(1,1,new DateTime(2024, 11, 29), new DateTime (2024, 12 , 25)));
+            Console.WriteLine(emprestimo.devolucao(1 , 1));
             // Console.WriteLine(usu);
 
             

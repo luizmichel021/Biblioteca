@@ -11,12 +11,12 @@ namespace Biblioteca.Repository
 
         private readonly Connection db = new Connection(); 
 
-        public bool setInventario(Inventario inventario)
+        public bool create(Inventario inventario)
         {
               using(var connection = db.GetConnection()){
                 connection.Open();
-                var cmd = new MySqlCommand("INSERT INTO Inventario (IDLivro_Catalogo) VALUES (@IDLivro_Catalogo)", connection);
-                cmd.Parameters.AddWithValue("@IDLivro_Catalogo" , inventario.IDLivro_Catalogo);
+                var cmd = new MySqlCommand("INSERT INTO Inventario (ID_Catalogo) VALUES (@ID_Catalogo)", connection);
+                cmd.Parameters.AddWithValue("@ID_Catalogo" , inventario.IDLivro_Catalogo);
                 var resultado = cmd.ExecuteNonQuery();
                 if(resultado != 0)
                 {
@@ -59,8 +59,8 @@ namespace Biblioteca.Repository
             using(var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("SELECT COUNT(*) FROM Inventario WHERE IDLivro_Catalogo = @IDLivro_Catalogo", connection);
-                cmd.Parameters.AddWithValue("IDLivro_Catalogo", ID_Catalogo);
+                var cmd = new MySqlCommand("SELECT COUNT(*) FROM Inventario WHERE ID_Catalogo = @ID_Catalogo", connection);
+                cmd.Parameters.AddWithValue("ID_Catalogo", ID_Catalogo);
                 var resultado = cmd.ExecuteScalar();
                 return Convert.ToInt32(resultado);
             }
