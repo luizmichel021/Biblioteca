@@ -3,7 +3,7 @@ using Biblioteca.Models;
 namespace Biblioteca.Repository{
     public interface IUsuarioRepository
     {
-        bool create(Usuario usuario);
+        int create(Usuario usuario);
         
         bool delete(int id);
 

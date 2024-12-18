@@ -9,26 +9,31 @@ namespace Biblioteca.Repository
     public class UsuarioRepository : IUsuarioRepository
     {
         private readonly Connection bd = new Connection(); 
-        public bool create(Usuario usuario)
+        public int create(Usuario usuario)
         {
             using(var connection = bd.GetConnection())
             {
              connection.Open();
-             var cmd =  new MySqlCommand("INSERT INTO Usuarios(Nome, Endereco, Telefone, Email, DataNascimento) VALUES (@Nome, @Endereco, @Telefone, @Email, @DataNascimento)",connection);
+             var cmd =  new MySqlCommand("INSERT INTO Usuarios(Nome, Endereco, Telefone, Email, DataNascimento) VALUES (@Nome, @Endereco, @Telefone, @Email, @DataNascimento);",connection);
              cmd.Parameters.AddWithValue("@Nome", usuario.Nome);
              cmd.Parameters.AddWithValue("@Endereco", usuario.Endereco);
              cmd.Parameters.AddWithValue("@Telefone", usuario.Telefone);
              cmd.Parameters.AddWithValue("@Email", usuario.Email);
              cmd.Parameters.AddWithValue("@DataNascimento", usuario.DataNascimento);
+
              var result = cmd.ExecuteNonQuery();
+             
 
              if (result != 0)
              {
-                return true;
+                var cmd2 = new MySqlCommand("SELECT LAST_INSERT_ID();", connection);
+                var resultId = cmd2.ExecuteScalar();
+                int id = Convert.ToInt32(resultId);
+                return id;
              }
              else
              {
-                return false;
+                return 0;
              } 
             } 
         }
@@ -134,5 +139,8 @@ namespace Biblioteca.Repository
                 }
             }
         }
+
+            
     }
+
 }

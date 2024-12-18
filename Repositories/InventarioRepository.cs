@@ -133,5 +133,20 @@ namespace Biblioteca.Repository
             }
         }
 
+        public bool checaDisponibilidade(int id)
+        {
+            using(var connection = db.GetConnection())
+            {
+                connection.Open();
+                var cmd = new MySqlCommand ("SELECT Disponivel FROM Inventario WHERE ID = @ID",connection);
+                cmd.Parameters.AddWithValue("@ID", id);
+                var result = cmd.ExecuteScalar();
+                var disponivel = Convert.ToBoolean(result);
+                return disponivel; 
+
+
+            }
+        }
     }
+
 }

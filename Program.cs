@@ -19,12 +19,12 @@ namespace Biblioteca
             var inventario = new InventarioRepository();
             var emprestimo = new EmprestimoRespository();
 
-            Usuario usu = new Usuario("Michel", "Vila Glauco 126", "michelwork18@hotmail.com", 975598507 , new DateTime(2000, 8 ,23));
+            // Console.WriteLine(service.CriarUsuario("Michel", "Vila Glauco 126", "michelwork18@hotmail.com", 975598507 , new DateTime(2000, 8 ,23)));
             
 
-            Catalogo livro = new Catalogo("Peter Pan", "Disney", 2007,"Comedia" , 120);
+            // Catalogo livro = new Catalogo("Peter Pan", "Disney", 2007,"Comedia" , 120);
 
-            Inventario invent = new Inventario(1);
+            // Inventario invent = new Inventario(1);
 
 
             // Console.WriteLine(service.adicionarCatalogo("Shrek 3", "Disney", 2007,"Comedia" , 120));
@@ -34,8 +34,8 @@ namespace Biblioteca
             // Console.WriteLine(catalogo.create(livro));
             // Console.WriteLine(usuario.create(usu));
             // Console.WriteLine(inventario.create(invent));
-            // Console.WriteLine(emprestimo.createEmprestimo(1,1,new DateTime(2024, 11, 29), new DateTime (2024, 12 , 25)));
-            Console.WriteLine(emprestimo.devolucao(1 , 1));
+            Console.WriteLine(service.emprestimo(2,2,new DateTime(2024, 11, 29), new DateTime (2024, 12 , 25)));
+            // Console.WriteLine(emprestimo.devolucao(1 , 1));
             // Console.WriteLine(usu);
 
             
