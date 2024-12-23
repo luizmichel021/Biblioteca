@@ -34,15 +34,15 @@ namespace Biblioteca.Repository
             using (var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("SELECT * FROM Catalogo WHERE ID = @ID", connection);
-                cmd.Parameters.AddWithValue("@ID", id);
+                var cmd = new MySqlCommand("SELECT * FROM Catalogo WHERE IDExemplar = @IDExemplar", connection);
+                cmd.Parameters.AddWithValue("@IDExemplar", id);
                 var reader = cmd.ExecuteReader();
 
                 if (reader.Read())
                 {
                      return new Catalogo
                         {
-                            IDLivro = reader.GetInt32("ID"),
+                            IDExemplar = reader.GetInt32("IDExemplar"),
                             Titulo = reader.GetString("Titulo"),
                             Autor = reader.GetString("Autor"),
                             Ano = reader.GetInt32("Ano"),
@@ -133,12 +133,12 @@ namespace Biblioteca.Repository
             using (var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("SELECT ID FROM Livro", connection);
+                var cmd = new MySqlCommand("SELECT IDExemplar FROM Catalogo", connection);
                 using (var reader = cmd.ExecuteReader())
                 {   
                     while (reader.Read())
                     {
-                        ids.Add(reader.GetInt32("ID"));
+                        ids.Add(reader.GetInt32("IDExemplar"));
                     }
                 }
             }

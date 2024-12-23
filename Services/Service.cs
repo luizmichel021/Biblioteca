@@ -32,7 +32,7 @@ namespace Biblioteca.Services{
             var usuario = new Usuario(nome,endereco,email,telefone,dataNascimento);            
             var idUsuario = usuarioRepository.create(usuario);
             return  idUsuario;
-        } 
+        }
 
         public string emprestimo(int idLivro, int idUsuario,DateTime dataEmprestimo,DateTime dataDevolucao)
         {   
@@ -57,6 +57,56 @@ namespace Biblioteca.Services{
 
         }
 
+        public string devolucao(int id, int id_inventario)
+        {
+            bool disponivel = inventarioRepository.checaDisponibilidade(id_inventario);
+            if (disponivel == false )
+            {  
+                bool devolucao = emprestimoRespository.devolucao(id, id_inventario);
+                if (devolucao == true)
+                {
+                    inventarioRepository.updateDisponibilidade(id_inventario, true);
+                    return"Você devolveu o livro de ID Inventario "+id_inventario+ " ! ";
+                }
+                else
+                {
+                    return"Não foi possivel devolver o livro, cheque os dados fornecidos!";
+                }
+            }
+            else
+            {
+                return"O id do inventario que foi fornecido não consta como emprestado, cheque novamente o numero de inventario do seu livro!";
+            }
+            
+
+        }
+
+        public string adicionarExemplarAoCatalogo(string titulo, string autor,int ano,string genero,int pags)
+        {
+            var catalogo = new Catalogo(titulo,autor,ano,genero,pags);
+            var i = catalogoRepository.create(catalogo);
+            if (i == 0)
+            {
+                return "erro ao criar um tipo de livro no catalogo";
+            }
+            else
+            {
+                return "tipo de livro criado no catalogo com sucesso";
+            }
+
+        }
+
+        public void exibirCatalogo()
+        {
+            List<int> id_list = new List<int>();
+            id_list = catalogoRepository.getAllIdsCatalogo();
+
+            foreach (int id in id_list)
+            {
+                Console.WriteLine(catalogoRepository.getCatalogo(id));
+            }
+
+        }
 
         
   

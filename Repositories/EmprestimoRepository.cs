@@ -15,7 +15,6 @@ namespace Biblioteca.Repository{
                 connection.Open();
                 var cmd = new MySqlCommand("UPDATE Emprestimos SET ID_Inventario = @ID_Inventario , Ativo = @Ativo  WHERE ID = @ID",connection);
                 cmd.Parameters.AddWithValue("@ID", id);
-                cmd.Parameters.AddWithValue("@ID_Inventario", id_inventario);
                 cmd.Parameters.AddWithValue("@Ativo", false);
                 var result = cmd.ExecuteNonQuery();
 

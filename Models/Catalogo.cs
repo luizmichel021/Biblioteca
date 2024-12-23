@@ -5,7 +5,7 @@ namespace Biblioteca.Models
     public class Catalogo
     {
         // ATRIBUTOS
-        private int idLivro;
+        private int idExemplar;
         private string titulo;
         private string autor;
         private int ano;
@@ -13,10 +13,10 @@ namespace Biblioteca.Models
         private int pags;
 
         // PROPRIEDADES
-        public int IDLivro
+        public int IDExemplar
         {
-            get {return idLivro;}
-            set {idLivro = value;}
+            get {return idExemplar;}
+            set {idExemplar = value;}
         }   
         
         public string Titulo
@@ -61,7 +61,7 @@ namespace Biblioteca.Models
 
           public override string ToString()
         {
-            return $"IDLivro: {IDLivro} Título: {Titulo}, Autor: {Autor}, Ano: {Ano}, Gênero: {Genero}, Páginas: {Pags}";
+            return $"IDExemplar: {IDExemplar} Título: {Titulo}, Autor: {Autor}, Ano: {Ano}, Gênero: {Genero}, Páginas: {Pags}";
         
         }
     }
