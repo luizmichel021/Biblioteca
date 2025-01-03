@@ -66,6 +66,28 @@ namespace Biblioteca.Repository
             }
         }
 
+        public List<int> getIdsInventarioPorID_Catalogo(int ID_Catalogo)
+        {
+            using (var connection = db.GetConnection())
+            {
+                connection.Open();
+                var cmd = new MySqlCommand("SELECT ID FROM Inventario WHERE ID_Catalogo = @ID_Catalogo", connection);
+                cmd.Parameters.AddWithValue("@ID_Catalogo", ID_Catalogo);
+
+                var listId = new List<int>();
+
+                using (var reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {                        
+                        listId.Add(reader.GetInt32(0));
+                    }
+                }
+
+                return listId;
+            }
+        }
+
         public bool delete(int id)
         {
             using(var connection = db.GetConnection())
@@ -116,7 +138,7 @@ namespace Biblioteca.Repository
              using(var connection = db.GetConnection())
             {
                 connection.Open();
-                var cmd = new MySqlCommand("UPDATE Inventario SET Disponivel = @Disponivel WHERE @ID", connection);
+                var cmd = new MySqlCommand("UPDATE Inventario SET Disponivel = @Disponivel WHERE ID = @ID ", connection);
                 cmd.Parameters.AddWithValue("@Disponivel", disponivel);
                 cmd.Parameters.AddWithValue("@ID", id);
 

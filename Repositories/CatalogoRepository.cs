@@ -10,7 +10,6 @@ namespace Biblioteca.Repository
     {
         private readonly Connection db = new Connection();   
 
-            // A Função set retornara um inteiro, o conteudo desse inteiro é a quantidade de linhas afetadas.
         public int create(Catalogo catalogo) 
         {
             
@@ -23,8 +22,22 @@ namespace Biblioteca.Repository
                 cmd.Parameters.AddWithValue("@Ano", catalogo.Ano);
                 cmd.Parameters.AddWithValue("@Genero", catalogo.Genero);
                 cmd.Parameters.AddWithValue("Pags", catalogo.Pags);
-                var rows = cmd.ExecuteNonQuery();
-                return rows;
+
+                var result = cmd.ExecuteNonQuery();
+
+                if (result != 0)
+                {
+                    var cmd2 = new MySqlCommand("SELECT LAST_INSERT_ID();", connection);
+                    var resultId = cmd2.ExecuteScalar();
+                    int id = Convert.ToInt32(resultId);
+                    return id;
+                }
+                else
+                {
+                    return 0;
+                } 
+
+                
                 
             }
         }

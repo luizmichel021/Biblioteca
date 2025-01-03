@@ -15,6 +15,7 @@ namespace Biblioteca.Repository{
                 connection.Open();
                 var cmd = new MySqlCommand("UPDATE Emprestimos SET ID_Inventario = @ID_Inventario , Ativo = @Ativo  WHERE ID = @ID",connection);
                 cmd.Parameters.AddWithValue("@ID", id);
+                cmd.Parameters.AddWithValue("@ID_Inventario", id_inventario);
                 cmd.Parameters.AddWithValue("@Ativo", false);
                 var result = cmd.ExecuteNonQuery();
 
@@ -30,7 +31,7 @@ namespace Biblioteca.Repository{
             }
         }
 
-        public bool createEmprestimo(int id_inventario, int id_usuario, DateTime data_emprestimo, DateTime data_devolucao)
+        public int createEmprestimo(int id_inventario, int id_usuario, DateTime data_emprestimo, DateTime data_devolucao)
         {
             using (var connection = db.GetConnection())
             {
@@ -44,12 +45,15 @@ namespace Biblioteca.Repository{
 
                 if (result != 0)
                 {
-                    return true;
+                    var cmd2 = new MySqlCommand("SELECT LAST_INSERT_ID();", connection);
+                    var resultId = cmd2.ExecuteScalar();
+                    int id = Convert.ToInt32(resultId);
+                    return id;
                 }
                 else
                 {
-                    return false;
-                }
+                    return 0;
+                } 
 
 
             }
